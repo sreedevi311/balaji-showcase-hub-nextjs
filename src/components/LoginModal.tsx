@@ -47,16 +47,16 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
       />
 
       {/* Modal */}
-      <div className="relative bg-card rounded-3xl w-full max-w-md shadow-[0_10px_40px_-10px_hsl(220_15%_20%_/_0.2)] animate-scale-in">
-        <div className="sticky top-0 bg-primary p-6 rounded-t-3xl flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-primary-foreground">
+      <div className="relative bg-card rounded-xl w-full max-w-md shadow-[0_10px_40px_-10px_hsl(220_15%_20%_/_0.2)] animate-scale-in">
+        <div className="sticky top-0 p-4 rounded-t-3xl flex justify-between items-center">
+          <h2 className="text-2xl font-bold text-primary">
             {isSignup ? "Create Account" : "Welcome Back"}
           </h2>
           <button
             onClick={onClose}
             className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
           >
-            <X className="w-6 h-6" />
+            <X className="w-6 h-6 text-primary" />
           </button>
         </div>
 

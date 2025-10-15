@@ -59,32 +59,32 @@ const AddReviewModal = ({ isOpen, onClose }: AddReviewModalProps) => {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-2">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300"
         onClick={onClose}
       />
 
       {/* Modal */}
-      <div className="relative bg-card rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-[0_10px_40px_-10px_hsl(220_15%_20%_/_0.2)] animate-scale-in">
-        <div className="sticky top-0 bg-primary p-6 rounded-t-3xl flex justify-between items-center z-10">
-          <h2 className="text-2xl font-bold text-primary-foreground">Write Your Review</h2>
+      <div className="relative bg-background rounded-xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-xl border border-border">
+        <div className="sticky top-0 bg-background p-4 flex justify-between items-center border-b border-border z-10">
+          <h2 className="text-xl font-semibold text-foreground">Write Your Review</h2>
           <button
             onClick={onClose}
-            className="text-primary-foreground/80 hover:text-primary-foreground transition-colors"
+            className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="p-5 space-y-5">
           {/* Rating */}
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-muted-foreground mb-2">
               Your Rating *
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               {[1, 2, 3, 4, 5].map((star) => (
                 <button
                   key={star}
@@ -92,13 +92,13 @@ const AddReviewModal = ({ isOpen, onClose }: AddReviewModalProps) => {
                   onClick={() => setRating(star)}
                   onMouseEnter={() => setHoverRating(star)}
                   onMouseLeave={() => setHoverRating(0)}
-                  className="transition-transform hover:scale-110"
+                  className="transition-colors"
                 >
                   <Star
-                    className={`w-10 h-10 ${
+                    className={`w-8 h-8 ${
                       star <= (hoverRating || rating)
-                        ? "fill-amber-400 text-amber-400"
-                        : "fill-muted text-muted"
+                        ? "fill-yellow-400 text-yellow-400"
+                        : "fill-none text-yellow-400 stroke-1"
                     }`}
                   />
                 </button>
@@ -108,20 +108,20 @@ const AddReviewModal = ({ isOpen, onClose }: AddReviewModalProps) => {
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-muted-foreground mb-2">
               Review Title *
             </label>
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Summarize your experience"
-              className="bg-background"
+              className="bg-background border-border focus:border-primary"
             />
           </div>
 
           {/* Tags */}
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-muted-foreground mb-2">
               Add Tags (optional)
             </label>
             <div className="flex flex-wrap gap-2">
@@ -129,10 +129,10 @@ const AddReviewModal = ({ isOpen, onClose }: AddReviewModalProps) => {
                 <Badge
                   key={tag}
                   variant={selectedTags.includes(tag) ? "default" : "outline"}
-                  className={`cursor-pointer transition-all ${
+                  className={`cursor-pointer transition-colors ${
                     selectedTags.includes(tag)
                       ? "bg-primary text-primary-foreground"
-                      : "hover:bg-muted"
+                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                   }`}
                   onClick={() => toggleTag(tag)}
                 >
@@ -144,21 +144,21 @@ const AddReviewModal = ({ isOpen, onClose }: AddReviewModalProps) => {
 
           {/* Review Text */}
           <div>
-            <label className="block text-sm font-medium text-foreground mb-2">
+            <label className="block text-sm font-medium text-muted-foreground mb-2">
               Your Review *
             </label>
             <Textarea
               value={review}
               onChange={(e) => setReview(e.target.value)}
               placeholder="Share your experience with Balaji Traders..."
-              className="bg-background min-h-[150px] resize-none"
+              className="bg-background border-border min-h-[120px] resize-none focus:border-primary"
             />
           </div>
 
           {/* Submit Button */}
           <Button
             type="submit"
-            className="w-full bg-primary text-primary-foreground hover:bg-primary/90 py-6 text-lg font-semibold rounded-xl"
+            className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
           >
             Submit Review
           </Button>
